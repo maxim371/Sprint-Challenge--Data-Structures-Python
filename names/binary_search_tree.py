@@ -9,49 +9,50 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+#from singly_linked_list import *
 
 class Queue:
     def __init__(self):
         self.size = 0
         self.storage = []
 
-    def isEmpty(self):
-        return self.storage == []    
-    
     def __len__(self):
-        return len(self.storage)
+        return sum([1 for i in self.storage])
 
-    def enqueue(self, value):  #0(1) - add to end of queue
+    def enqueue(self, value):
         self.storage.append(value)
 
-    def dequeue(self):         #FIFO - remove starting brginning of queue
-        data = self.storage[0]
-        del self.storage[0]
-        return data
+    def dequeue(self):
+        if len(self.storage) == 0:
+            return None
+        else:
+            return self.storage.pop(0)
+
 
 
 class Stack:
     def __init__(self):
         self.size = 0
-        self.storage = []
-
-    def isEmpty(self):
-        return self.storage == []    
+        self.store = []
 
     def __len__(self):
-        return len(self.storage)
+        size = 0
+        for _ in self.store:
+            size += 1
+        return size
 
     def push(self, value):
-        self.storage.append(value)
+        self.store.append(value)
 
     def pop(self):
-        data = self.storage[-1]
-        del self.storage[-1]
-        return data
+        if self.__len__() == 0:
+            return None
+        else:
+            return self.store.pop(-1)
 
 
 class BSTNode:
-    def __init__(self, value):
+    def __init__(self, value, a=None):
         self.value = value
         self.left = None
         self.right = None
@@ -133,7 +134,7 @@ class BSTNode:
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
-    def bft_print(self, node):
+    def dft_print(self, node):
         stack = Stack()
         stack.push(node)
         ans = ''
@@ -162,21 +163,21 @@ This code is necessary for testing the `print` methods
 """
 bst = BSTNode(1)
 
-bst.insert(8)
-bst.insert(5)
-bst.insert(7)
-bst.insert(6)
-bst.insert(3)
-bst.insert(4)
-bst.insert(2)
+# bst.insert(8)
+# bst.insert(5)
+# bst.insert(7)
+# bst.insert(6)
+# bst.insert(3)
+# bst.insert(4)
+# bst.insert(2)
 
-# bst.bft_print()
-# bst.dft_print()
+# # bst.bft_print()
+# # bst.dft_print()
 
-# # print("elegant methods")
-# # print("pre order")
-# # bst.pre_order_dft()
-# # print("in order")
-# # bst.in_order_dft()
-# # print("post order")
-# # bst.post_order_dft()  
+# # # print("elegant methods")
+# # # print("pre order")
+# # # bst.pre_order_dft()
+# # # print("in order")
+# # # bst.in_order_dft()
+# # # print("post order")
+# # # bst.post_order_dft()  
